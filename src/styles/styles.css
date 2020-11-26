@@ -8,10 +8,12 @@
 body, html {
     padding: 0;
     margin: 0;
+    position: relative;
 }
 
 body {
     background-color: hsl(0, 0%, 98%);
+    transition: all .2s ease-in-out;
 }
 
 * {
@@ -61,10 +63,12 @@ header h1 {
 
 .attribution {
     text-align: center;
+    background-color: hsl(0, 0%, 98%);
+    transition: all .2s ease-in-out;
 }
 
 .darkModeSpin {
-    transform: rotate(360deg);
+    animation: spinDark .5s ease-in-out forwards;
 }
 
 .content {
@@ -145,6 +149,7 @@ header h1 {
 
 .itemView {
     background-color: hsl(0, 0%, 98%);
+    visibility: visible;
     opacity: 1;
     transition: all .2s ease-in-out;
 }
@@ -159,11 +164,16 @@ header h1 {
 }
 
 .itemView__content-data {
-    margin: auto;
+    padding: 0px 5%;
 }
 
 .borderBtn {
     margin-left: 10px;
+    padding: 5px 10px;
+}
+
+.borderBtn:last-child {
+    margin-top: 10px;
 }
 
 .itemView__content-data-description {
@@ -202,7 +212,9 @@ button {
 }
 
 .darkMode .content,
-.darkMode .itemView {
+.darkMode .itemView,
+.darkMode .attribution,
+.darkMode {
     background-color: var(--DARKMODEBACKGROUND);
 }
 
@@ -236,7 +248,9 @@ button {
 }
 
 .hideItem {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
 }
 
 @media only screen and (min-width: 500px) and (max-width: 1024px){
@@ -367,4 +381,18 @@ button {
         display: block;
     }
 
+}
+
+@keyframes spinDark {
+    from {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(.1);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }

@@ -161,28 +161,39 @@ const getBorders = async( bordersArray ) => {
     console.log(bordersArray);
     const buttonContainer = document.querySelector('.itemView__content-data');
 
-    if( (bordersArray.length - 1) <= 1 ){
+    if( bordersArray.length == 0 ) {
+        button = document.createElement('button');
+        button.classList.add('borderBtn');
+        button.innerHTML = 'None';
+        buttonContainer.append(button);
+    } else if( (bordersArray.length - 1) == 1 ){
         for(let i = 0; i <= 1; i++){
             button = document.createElement('button');
-            button.classList.add('borderBtn')
-            button.innerHTML = bordersArray[i];
+            button.classList.add('borderBtn');
+            button.innerHTML = await executeFetch( bordersArray[i].toLowerCase() );
             buttonContainer.append(button);
         }
     } else {
         for(let i = 0; i <= 2; i++){
             button = document.createElement('button');
-            button.classList.add('borderBtn')
-            button.innerHTML = bordersArray[i];
+            button.classList.add('borderBtn');
+            button.innerHTML = await executeFetch( bordersArray[i].toLowerCase() );
             buttonContainer.append(button);
-            }
+        }
     }
+}
+
+const executeFetch = async( country ) => {
+    let resp = await fetch( `${ apiURL }${country}` );
+    let { name } = await resp.json();
+    return name;
 }
 
 darkModeToggle.addEventListener('click', () => {
     const darkModeDiv = document.querySelector('.header-darkmode');
     
     body.classList.toggle('darkMode');
-    darkModeDiv.classList.toggle('darkModeSpin');
+    darkModeDiv.classList.add('darkModeSpin');
     
     if( darkModeDiv.children[0].classList.contains('fas') ){
         darkModeDiv.children[0].classList.remove('fas');
@@ -191,6 +202,10 @@ darkModeToggle.addEventListener('click', () => {
         darkModeDiv.children[0].classList.add('fas');
         darkModeDiv.children[0].classList.remove('far');
     }
+
+    setTimeout(() => {
+        darkModeDiv.classList.remove('darkModeSpin');
+    }, 500);
 });
 
 backButton.addEventListener('click', () => {
