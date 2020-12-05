@@ -25,12 +25,12 @@ const createItem  = async( country ) => {
 
 
         const html = `
-            <img src="${ resp.flag }" alt=""  id="${country}">
+            <img src="${ resp.flag }">
             <div class="content__items-item-description" id="${country}">
-                <p class="name" id="${country}"><b>${ resp.name }</b></p>
-                <p class="population" id="${country}"><b>Population: </b>${ resp.population.toLocaleString() }</p>
-                <p class="region" id="${country}"><b>Region: </b>${ resp.region }</p>
-                <p class="capital" id="${country}"><b>Capital: </b>${ resp.capital }</p>
+                <p class="name"><b>${ resp.name }</b></p>
+                <p class="population"><b>Population: </b>${ resp.population.toLocaleString() }</p>
+                <p class="region"><b>Region: </b>${ resp.region }</p>
+                <p class="capital"><b>Capital: </b>${ resp.capital }</p>
             </div>
         `;
 
@@ -120,7 +120,12 @@ const addListener = async() => {
 }
 
 const openDetails = async(item) => {
-    let id = item.target.getAttribute('id');
+    let i = item.target;
+    while( !i.classList.contains("content__items-item") ){
+        i = i.parentElement;
+    }
+
+    let id = i.getAttribute('id');
 
     // Creando HTML
     let resp = await fetch( `${ apiURL }${id}` );
