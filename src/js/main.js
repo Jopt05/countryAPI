@@ -132,7 +132,7 @@ const openDetails = async(item) => {
         resp = await resp.json();
 
         const html = `
-            <img src="${ resp.flag }" alt="">
+            <img src="${ resp.flag }" alt="Country flag">
             <div class="itemView__content-data">
                 <h2>${ resp.name }</h2>
                 <div class="itemView__content-data-description">
