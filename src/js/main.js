@@ -25,8 +25,8 @@ const createItem  = async( country ) => {
 
 
         const html = `
-            <img src="${ resp.flag }">
-            <div class="content__items-item-description" id="${country}">
+            <img src="${ resp.flag }" alt="country flag">
+            <div class="content__items-item-description">
                 <p class="name"><b>${ resp.name }</b></p>
                 <p class="population"><b>Population: </b>${ resp.population.toLocaleString() }</p>
                 <p class="region"><b>Region: </b>${ resp.region }</p>
