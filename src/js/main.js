@@ -94,7 +94,9 @@ const filterRegion = (value) => {
 }
 
 const searchOnInput = (  ) => {
-    let value = inputSearch.value;
+    let value = inputSearch.value.toLowerCase();
+    value = value.charAt(0).toUpperCase() + value.slice(1);
+    console.log(value);
     const pName    = document.querySelectorAll('.name');
 
     if(value != ''){
