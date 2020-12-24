@@ -108,8 +108,8 @@ header h1 {
 
 .content__items {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3,250px);
     justify-content: space-between;
 }
 
