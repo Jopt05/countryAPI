@@ -1,4 +1,4 @@
-const apiURL    = 'https://restcountries.eu/rest/v2/alpha/',
+const apiURL    = 'https://restcountries.com/v2/alpha',
 countries       = ['dza', 'alb', 'ala', 'afg', 'isl', 'bra', 'usa', 'deu'],
 
 items_Container = document.querySelector('.content__items'),
@@ -16,7 +16,7 @@ const createItem  = async( country ) => {
 
     for(let country of countries){
 
-        let resp = await fetch( `${ apiURL }${country}` );
+        let resp = await fetch( `${ apiURL }/${country}` );
         resp = await resp.json();
 
         const div = document.createElement('div');
@@ -28,7 +28,7 @@ const createItem  = async( country ) => {
             <img src="${ resp.flag }" alt="country flag">
             <div class="content__items-item-description">
                 <p class="name"><b>${ resp.name }</b></p>
-                <p class="population"><b>Population: </b>${ resp.population.toLocaleString() }</p>
+                <p class="population"><b>Population: </b>${ resp.population }</p>
                 <p class="region"><b>Region: </b>${ resp.region }</p>
                 <p class="capital"><b>Capital: </b>${ resp.capital }</p>
             </div>
