@@ -39,7 +39,6 @@ const createItem  = async( country ) => {
 
     }
 
-    console.log('Done1');
 
 }
 
@@ -49,7 +48,7 @@ const deleteRepeatedSelect = async(  ) => {
     arrayUnique = [];
 
     for(let i = 0; i < countries.length - 1; i++){
-        let resp = await fetch( `${ apiURL }${countries[i]}` );
+        let resp = await fetch( `${ apiURL }/${countries[i]}` );
         resp = await resp.json();
         let region = resp.region;
         array.push(region);
@@ -72,7 +71,6 @@ const deleteRepeatedSelect = async(  ) => {
         selecFilter.append(option);
     } )
 
-    console.log('Done2');
 }
 
 const filterRegion = (value) => {
@@ -96,7 +94,6 @@ const filterRegion = (value) => {
 const searchOnInput = (  ) => {
     let value = inputSearch.value.toLowerCase();
     value = value.charAt(0).toUpperCase() + value.slice(1);
-    console.log(value);
     const pName    = document.querySelectorAll('.name');
 
     if(value != ''){
@@ -130,7 +127,7 @@ const openDetails = async(item) => {
     let id = i.getAttribute('id');
 
     // Creando HTML
-    let resp = await fetch( `${ apiURL }${id}` );
+    let resp = await fetch( `${ apiURL }/${id}` );
         resp = await resp.json();
 
         const html = `
@@ -164,8 +161,7 @@ const openDetails = async(item) => {
         itemView.classList.remove('hide');
 }
 
-const getBorders = async( bordersArray ) => {
-    console.log(bordersArray);
+const getBorders = async( bordersArray = []) => {
     const buttonContainer = document.querySelector('.itemView__content-data');
 
     if( bordersArray.length == 0 ) {
@@ -191,7 +187,7 @@ const getBorders = async( bordersArray ) => {
 }
 
 const executeFetch = async( country ) => {
-    let resp = await fetch( `${ apiURL }${country}` );
+    let resp = await fetch( `${ apiURL }/${country}` );
     let { name } = await resp.json();
     return name;
 }
